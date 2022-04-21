@@ -3,4 +3,12 @@ export const REGISTRO_ERROR= ' REGISTRO_ERROR';
 export const LIMPIAR_ALERTAS = ' LIMPIAR_ALERTAS';
 
 
+export const LOGIN_EXISTOSO= ' LOGIN_EXISTOSO';
+
+export const LOGIN_ERROR = ' LOGIN_ERROR';
+
+
+
 export const USUARIO_AUTENTICADO = ' USUARIO_AUTENTICADO';
+
+export const CERRAR_SECION = ' CERRAR_SECION';
