@@ -1,6 +1,9 @@
 import React,{ useContext,useEffect} from 'react';
 import Layout from '../components/Layout'
+import Alerta from '../components/Alerta';
 import authContext from '../context/auth/authContext'
+import appContext from '../context/app/appContext'
+
 import Dropzone from '../components/Dropzone';
 import Link from 'next/link';
 const Index = () => {
@@ -8,6 +11,12 @@ const Index = () => {
 const AuthContext = useContext(authContext);
 
 const {usuarioAutenticadoJWS} = AuthContext;
+
+//extraer el mensaje de archivos 
+const AppContext = useContext(appContext);
+const {mensaje_archivo} = AppContext;
+
+
 useEffect(() => {
  usuarioAutenticadoJWS();
 },[])
@@ -15,6 +24,9 @@ useEffect(() => {
   return (  
    <Layout>
       <div className="md:w-4/5 xl:w-3/5 mx-auto mb-32"> 
+            
+     {mensaje_archivo && <Alerta /> }
+
             <div className="lg:flex md:shadow-lg p-5 bg-white rounded-lg py-10">
               <Dropzone />
               <div className="md:flex-1 mb-3 mx-2 mt-16 lg:mt-0"> 

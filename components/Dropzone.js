@@ -1,11 +1,22 @@
-import React,{useState,useCallback}from 'react';
+import React,{useCallback,useContext}from 'react';
 import {useDropzone} from 'react-dropzone';
-import { createModuleResolutionCache } from 'typescript';
 import clienteAxios from '../config/axios'
+import appContext from '../context/app/appContext';
+
 
 const Dropzone = () => {
+
+    const AppContext = useContext(appContext)
+
+    const {mostrarAlerta} = AppContext;
+
+  const onDropRejected = ()=>{
+      mostrarAlerta('no se pudo subir archivo, el archivo supéra los 1mb, onbten uan cuenta para subir archivos mas grandes ');
+  }
+
+
     // fn de on drop va permitir leer los archivos que se suben y manejarlos 
-  const onDrop = useCallback( async(acceptedFiles) => {
+  const onDropAccepted  = useCallback( async(acceptedFiles) => {
       console.log(acceptedFiles)
         // crear un form-data 
       const formData = new FormData();
@@ -17,7 +28,7 @@ const Dropzone = () => {
 
 
  //extraera contenido de drpzone para
- const {getRootProps, getInputProps,isDragActive,acceptedFiles} =useDropzone({onDrop});
+ const {getRootProps, getInputProps,isDragActive,acceptedFiles} =useDropzone({onDropAccepted,onDropRejected, maxSize: 1000000});
 
  const archivos = acceptedFiles.map(archivo => (
            <li key={archivo.lastModified} className="bg-white flex-1 p-3 mb-4 shadow-lg rounded">
