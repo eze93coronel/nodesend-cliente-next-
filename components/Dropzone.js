@@ -8,7 +8,7 @@ const Dropzone = () => {
 
     const AppContext = useContext(appContext)
 
-    const {mostrarAlerta} = AppContext;
+    const {cargando, mostrarAlerta,subirArchivo, crearEnlace} = AppContext;
 
   const onDropRejected = ()=>{
       mostrarAlerta('no se pudo subir archivo, el archivo supéra los 1mb, onbten uan cuenta para subir archivos mas grandes ');
@@ -17,13 +17,16 @@ const Dropzone = () => {
 
     // fn de on drop va permitir leer los archivos que se suben y manejarlos 
   const onDropAccepted  = useCallback( async(acceptedFiles) => {
-      console.log(acceptedFiles)
-        // crear un form-data 
-      const formData = new FormData();
-      formData.append('archivo',acceptedFiles[0]);//accepfiles contiene los archivos que subimos
-      const resultado = await clienteAxios.post('/api/archivos',formData);
+      //  console.log(acceptedFiles)
 
-      console.log(resultado.data);
+           // crear un form-data 
+           const formData = new FormData();
+           formData.append('archivo',acceptedFiles[0]);//accepfiles contiene los archivos que subimos
+        
+           
+     
+           subirArchivo(formData,acceptedFiles[0].path);
+
   },[]);
 
 
@@ -37,9 +40,7 @@ const Dropzone = () => {
            </li> 
  ));
 
- const crearEnlace = ()=> {
-     console.log('creando el enlace')
- }
+
 
     return (  
 
@@ -50,12 +51,18 @@ const Dropzone = () => {
         <ul>
             {archivos}
          </ul>
+               
+         {cargando ? <p className="my-10 text-center text-gray-600">Subiendo archivo...</p> : (
+                  
          <button type = "button"
-             className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800"
-             onClick={() => crearEnlace()}
-         >
-          Crear Enlace 
-         </button>
+       
+         className="bg-blue-700 w-full py-3 rounded-lg text-white my-10 hover:bg-blue-800"
+         onClick={() => crearEnlace()}
+     >
+      Crear Enlace 
+     </button>
+              )}
+
      </div>
  
   
