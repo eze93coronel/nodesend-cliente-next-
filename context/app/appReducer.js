@@ -1,4 +1,4 @@
-import {LIMPIAR_STATE,  SUBIR_ARCHIVO,  MOSTRAR_ALERTA,SUBIR_ARCHIVO_EXITO,SUBIR_ARCHIVO_ERROR,CREAR_ENLACE_EXITO,CREAR_ENLACE_ERROR,LIMPIAR_ALERTAS} from '../../types'
+import {AGREGAR_DESCARGAS,  AGREGAR_PASSWORD,LIMPIAR_STATE,  SUBIR_ARCHIVO,  MOSTRAR_ALERTA,SUBIR_ARCHIVO_EXITO,SUBIR_ARCHIVO_ERROR,CREAR_ENLACE_EXITO,CREAR_ENLACE_ERROR,LIMPIAR_ALERTAS} from '../../types'
 
 
 export default (state,action) =>{
@@ -49,6 +49,19 @@ export default (state,action) =>{
         autor: null,
         url : ''
        }
+
+    case AGREGAR_PASSWORD : 
+    return {
+       ...state,
+       password : action.payload
+
+    }
+
+    case AGREGAR_DESCARGAS : 
+    return {
+        ...state,
+        descargas : action.payload
+    }
 
       default:
           return state

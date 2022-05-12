@@ -1,4 +1,4 @@
-import { REGISTRO_ERROR, REGISTRO_EXITOSO,LIMPIAR_ALERTAS,LOGIN_ERROR,LOGIN_EXISTOSO,USUARIO_AUTENTICADO,CERRAR_SECION} from "../../types";
+import {REGISTRO_ERROR, REGISTRO_EXITOSO,LIMPIAR_ALERTAS,LOGIN_ERROR,LOGIN_EXISTOSO,USUARIO_AUTENTICADO,CERRAR_SECION} from "../../types";
 
 export default (state , action) =>{
     switch(action.type){
@@ -17,7 +17,8 @@ export default (state , action) =>{
         }
         case USUARIO_AUTENTICADO : 
         return { ...state,
-                 usuario : action.payload
+                 usuario : action.payload,
+                 autenticado : true
         }
         case CERRAR_SECION :
             localStorage.removeItem('token')  

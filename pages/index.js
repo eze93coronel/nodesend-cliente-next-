@@ -18,7 +18,11 @@ const {mensaje_archivo, url} = AppContext;
 
 
 useEffect(() => {
+  const token = localStorage.getItem('token');
+  if(token){
  usuarioAutenticadoJWS();
+        
+  }
 },[])
 
   return (  

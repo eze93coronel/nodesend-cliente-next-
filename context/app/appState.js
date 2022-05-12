@@ -2,7 +2,7 @@ import React,{useReducer} from 'react';
 import appContext from './appContext';
 import appReducer from './appReducer'
  
-import {SUBIR_ARCHIVO,   MOSTRAR_ALERTA,LIMPIAR_ALERTAS,  SUBIR_ARCHIVO_EXITO,SUBIR_ARCHIVO_ERROR,CREAR_ENLACE_EXITO,CREAR_ENLACE_ERROR,LIMPIAR_STATE} from '../../types'
+import {AGREGAR_DESCARGAS,  AGREGAR_PASSWORD ,SUBIR_ARCHIVO,   MOSTRAR_ALERTA,LIMPIAR_ALERTAS,  SUBIR_ARCHIVO_EXITO,SUBIR_ARCHIVO_ERROR,CREAR_ENLACE_EXITO,CREAR_ENLACE_ERROR,LIMPIAR_STATE} from '../../types'
 import clienteAxios from '../../config/axios';
 
  const AppState = ({children})=>{
@@ -99,6 +99,21 @@ import clienteAxios from '../../config/axios';
         dispatch({
             type :LIMPIAR_STATE
         })
+    };
+
+    const agregarPassword = password => {
+        dispatch({
+            type : AGREGAR_PASSWORD,
+            payload : password
+        })
+    }
+
+    //agrega un numero de descragas que
+    const agregarDescargas = descargas =>{
+            dispatch({
+                type : AGREGAR_DESCARGAS,
+                payload : descargas
+            })
     }
 
         return (
@@ -115,7 +130,9 @@ import clienteAxios from '../../config/axios';
                      mostrarAlerta,
                      subirArchivo,
                      crearEnlace,
-                     limpiarState
+                     limpiarState,
+                     agregarPassword,
+                     agregarDescargas
                  }}
               >
                   {children}
