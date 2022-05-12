@@ -2,7 +2,7 @@ import React,{useReducer} from 'react';
 import appContext from './appContext';
 import appReducer from './appReducer'
  
-import {SUBIR_ARCHIVO,   MOSTRAR_ALERTA,LIMPIAR_ALERTAS,  SUBIR_ARCHIVO_EXITO,SUBIR_ARCHIVO_ERROR,CREAR_ENLACE_EXITO,CREAR_ENLACE_ERROR} from '../../types'
+import {SUBIR_ARCHIVO,   MOSTRAR_ALERTA,LIMPIAR_ALERTAS,  SUBIR_ARCHIVO_EXITO,SUBIR_ARCHIVO_ERROR,CREAR_ENLACE_EXITO,CREAR_ENLACE_ERROR,LIMPIAR_STATE} from '../../types'
 import clienteAxios from '../../config/axios';
 
  const AppState = ({children})=>{
@@ -94,6 +94,12 @@ import clienteAxios from '../../config/axios';
       }
     }
 
+    // limpiar el state 
+    const limpiarState = ()=>{
+        dispatch({
+            type :LIMPIAR_STATE
+        })
+    }
 
         return (
               <appContext.Provider
@@ -108,7 +114,8 @@ import clienteAxios from '../../config/axios';
                      url :state.url,
                      mostrarAlerta,
                      subirArchivo,
-                     crearEnlace
+                     crearEnlace,
+                     limpiarState
                  }}
               >
                   {children}
